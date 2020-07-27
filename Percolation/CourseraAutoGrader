@@ -1,3 +1,41 @@
+/* *****************************************************************************
+ *  Name:     Wesley Cheung
+ *  NetID:
+ *  Precept:
+ *
+ *  Partner Name:    N/A
+ *  Partner NetID:   N/A
+ *  Partner Precept: N/A
+ *
+ *  Operating system:
+ *  Compiler:
+ *  Text editor / IDE:
+ *
+ *  Have you taken (part of) this course before:
+ *  Have you taken (part of) the Coursera course Algorithms, Part I or II:
+ *
+ *  Hours to complete assignment (optional):
+ *
+ **************************************************************************** */
+
+Programming Assignment 1: Percolation
+
+
+
+/* *****************************************************************************
+ *  Describe how you implemented Percolation.java. How did you check
+ *  whether the system percolates?
+ **************************************************************************** */
+
+Percolation is a model for physical system, simulating pouring liquid from the top of porous material,
+and testing whether the top and bottom end is connected/ or will it reach the bottom. In this program (Percolation.java),
+it will simulate a N-by-N system on when it will be and the probability percolates using Monte Carlo simulation and
+Weighted Quick Union Algorithm. The system is defined as percolated when the virtual top site is connected with the
+virtual bottom site.
+
+
+
+
 ================================================================
 
 
@@ -239,7 +277,7 @@ Test 1: check formatting of output of main()
   stddev          =0.048526195674776174
   95% confidence Interval          =[0.5396731523150005, 0.5998268476849997]
 
-   - line 0 of output in student solution: 
+   - line 0 of output in student solution:
      'mean()          =0.5697500000000001'
    - the required format is:
      'mean() = <double>'
@@ -249,7 +287,7 @@ Test 1: check formatting of output of main()
   stddev          =0.008900469837076416
   95% confidence Interval          =[0.5898917579119329, 0.5933807420880668]
 
-   - line 0 of output in student solution: 
+   - line 0 of output in student solution:
      'mean()          =0.5916362499999999'
    - the required format is:
      'mean() = <double>'
@@ -407,10 +445,10 @@ Test 1a-1d: check memory usage as a function of T trials for n = 100
 
                  T        bytes
 --------------------------------------------
-=> passed       16          176         
-=> passed       32          304         
-=> passed       64          560         
-=> passed      128         1072         
+=> passed       16          176
+=> passed       32          304
+=> passed       64          560
+=> passed      128         1072
 ==> 4/4 tests passed
 
 
@@ -490,10 +528,10 @@ Test 1a-1d: check that total memory <= 17 n^2 + 128 n + 1024 bytes
 
                  n        bytes
 --------------------------------------------
-=> passed       64        71984         
-=> passed      256      1122608         
-=> passed      512      4473136         
-=> passed     1024     17858864         
+=> passed       64        71984
+=> passed      256      1122608
+=> passed      512      4473136
+=> passed     1024     17858864
 ==> 4/4 tests passed
 
 
@@ -527,13 +565,13 @@ Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
                                        2 * connected()
                  n       union()              + find()        constructor
 -----------------------------------------------------------------------------------
-=> passed       16          334                   284                   2         
-=> passed       32         1623                  1296                   2         
-=> passed       64         5932                  4898                   2         
-=> passed      128        23382                 19514                   2         
-=> passed      256        93274                 78146                   2         
-=> passed      512       368273                310612                   2         
-=> passed     1024      1461154               1237470                   2         
+=> passed       16          334                   284                   2
+=> passed       32         1623                  1296                   2
+=> passed       64         5932                  4898                   2
+=> passed      128        23382                 19514                   2
+=> passed      256        93274                 78146                   2
+=> passed      512       368273                310612                   2
+=> passed     1024      1461154               1237470                   2
 ==> 7/7 tests passed
 
 
@@ -549,15 +587,15 @@ Tests 2a-2f: Check whether the number of calls to union(), connected(), and find
              during a single call to open(), isOpen(), isFull(), and percolates().
              One call to connected() counts as two calls to find().
 
-                 n     per open()      per isOpen()    per isFull()    per percolates() 
+                 n     per open()      per isOpen()    per isFull()    per percolates()
 ---------------------------------------------------------------------------------------------
-=> passed       16        8               0               2               2         
-=> passed       32        8               0               2               2         
-=> passed       64        8               0               2               2         
-=> passed      128        8               0               2               2         
-=> passed      256        8               0               2               2         
-=> passed      512        8               0               2               2         
-=> passed     1024        8               0               2               2         
+=> passed       16        8               0               2               2
+=> passed       32        8               0               2               2
+=> passed       64        8               0               2               2
+=> passed      128        8               0               2               2
+=> passed      256        8               0               2               2
+=> passed      512        8               0               2               2
+=> passed     1024        8               0               2               2
 ==> 7/7 tests passed
 
 
