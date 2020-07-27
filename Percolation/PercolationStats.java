@@ -52,9 +52,8 @@ public class PercolationStats {
     public double confidenceLo() {
         double sd = stddev();
         double mean = mean();
-        double cL = mean - (1.96 * sd / (Math.sqrt(probabilityArray.length)));
         // System.out.println("confidenceLow() = " + cL);
-        return cL;
+        return mean - (1.96 * sd / (Math.sqrt(probabilityArray.length)));
     }
 
     // high endpoint of 95% confidence interval
@@ -72,7 +71,7 @@ public class PercolationStats {
 
         // Scanner input = new Scanner(System.in);
         PercolationStats test = new PercolationStats(Integer.parseInt(args[0]),
-                                                     Integer.parseInt(args[1]));
+                Integer.parseInt(args[1]));
 
         double mean = test.mean();
         double sd = test.stddev();
