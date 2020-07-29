@@ -1,9 +1,3 @@
-import edu.princeton.cs.algs4.Queue;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 /* *****************************************************************************
  *  Name:    Alan Turing
  *  NetID:   aturing
@@ -18,9 +12,17 @@ import java.util.Scanner;
  *                Prof. Brian Kernighan initiated this tradition in 1974.
  *
  **************************************************************************** */
+
+import edu.princeton.cs.algs4.Queue;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
 public class Board {
-    private String tiles_string;
-    private int[][] tiles;
+    //    private String tiles_string;
+    private final int[][] tiles;
     private int hamming;
     private int manhattan;
 
@@ -52,9 +54,9 @@ public class Board {
         StringBuilder sb = new StringBuilder();
         sb.append(Integer.toString(tiles.length));
         sb.append("\n");
-        for (int i = 0; i < tiles.length; i++) {
+        for (int[] tile : tiles) {
             for (int j = 0; j < tiles.length; j++) {
-                sb.append(String.format("%2d ", tiles[i][j]));
+                sb.append(String.format("%2d ", tile[j]));
             }
             sb.append("\n");
         }
@@ -166,12 +168,12 @@ public class Board {
         }
 
     }
-    
+
 
     // unit testing (required)
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File(args[0]);
-        Scanner in = new Scanner(file);
+        Scanner in = new Scanner(file, "UTF-8");
         int n = in.nextInt();
         int[][] Tile = new int[n][n];
         for (int i = 0; i < n; i++) {
@@ -189,5 +191,6 @@ public class Board {
         }
 
     }
-
 }
+
+
