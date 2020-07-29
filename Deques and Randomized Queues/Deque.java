@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
 
-    private Node first, last = null;
+    private Node first, last;
     private int size;
 
     private class Node {
@@ -58,11 +58,14 @@ public class Deque<Item> implements Iterable<Item> {
         if (first == null) {
             first = new Node();
             first.item = item;
+            first.next = null;
+            first.previous = null;
         } else {
             Node oldFirst = first;
             first = new Node();
             first.item = item;
             first.next = oldFirst;
+            first.previous = null;
             oldFirst.previous = first;
         }
         if (last == null && size == 0) {
@@ -106,6 +109,7 @@ public class Deque<Item> implements Iterable<Item> {
         Item firstItem = first.item;
         if (first.next != null) {
             first = first.next;
+            first.previous = null;
         } else {
             first = null;
             if (size == 1) {
@@ -144,7 +148,6 @@ public class Deque<Item> implements Iterable<Item> {
 
     private class ListIterator implements Iterator<Item> {
         private Node current = first;
-//        private int sizeI = size;
 
         public boolean hasNext() {
             return current != null;
@@ -166,19 +169,13 @@ public class Deque<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args) {
-        Deque<String> temp = new Deque<String>();
-//        temp.addFirst("Apple");
-//        temp.addLast("Pear");
-//        System.out.println(temp.removeFirst() + temp.removeLast() + temp.size());
-//        temp.addFirst("Apple");
-//        temp.addLast("Pear");
-//        System.out.println(temp.removeFirst() + temp.removeLast() + temp.size());
+        Deque<String> temp = new Deque<>();
 
         temp.addFirst("Apple");
         temp.removeFirst();
         temp.addFirst("Pear");
         System.out.println(temp.removeLast());
-        Deque<String> temp2 = new Deque<String>();
+        Deque<String> temp2 = new Deque<>();
 
         temp2.addLast("Mochi");
         temp2.addFirst("Mochi2");
@@ -187,14 +184,12 @@ public class Deque<Item> implements Iterable<Item> {
         temp2.addLast("Ice Cream");
         System.out.println(temp2.removeFirst());
 
-        Deque<Integer> deque = new Deque<Integer>();
+        Deque<Integer> deque = new Deque<>();
         deque.addLast(1);
         deque.addFirst(2);
         deque.addLast(3);
         deque.removeLast();
-        deque.size();
         deque.removeFirst();
-        deque.isEmpty();
         System.out.println(deque.removeLast());
         deque.addLast(9);
         deque.addLast(10);
@@ -212,17 +207,5 @@ public class Deque<Item> implements Iterable<Item> {
             System.out.println(n);
         }
 
-
-        //        temp.addLast("Pear");
-//        temp.addLast("Blueberry");
-//        temp.addLast("Strawberry");
-//        temp.addLast("Blueberry");
-//        temp.addLast("Pear");
-//        temp.removeFirst();
-//
-//        for (Iterator<String> it = temp.iterator(); it.hasNext(); ) {
-//            String n = it.next();
-//            System.out.println(n);
-//        }
     }
 }

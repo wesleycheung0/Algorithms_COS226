@@ -8,7 +8,9 @@
  *                Prof. Brian Kernighan initiated this tradition in 1974.
  *
  * 1. [unchecked] unchecked cast
- *
+ *[INFO] RandomizedQueue.java:85: Using a loop in this method might be a performance bug. [Performance]
+ * Test 3 (bonus): check that maximum size of any or Deque or RandomizedQueue object
+                created is equal to k
  **************************************************************************** */
 
 import edu.princeton.cs.algs4.StdOut;
@@ -19,12 +21,11 @@ import java.util.Iterator;
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private int size;
-    private Node first, last;
+    private Node first;
 
     // construct an empty randomized queue
     public RandomizedQueue() {
         first = null;
-        last = null;
     }
 
     private class Node {
@@ -44,6 +45,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // add the item
     public void enqueue(Item item) {
+        if (item == null) {
+            throw new java.lang.IllegalArgumentException();
+        }
+
         Node oldFirst = first;
         first = new Node();
         first.item = item;
@@ -52,12 +57,18 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // remove and return a random item
+    // Not Constant time
+
     public Item dequeue() {
+
+        if (size == 0) {
+            throw new java.util.NoSuchElementException();
+        }
+
         Node target = first;
         Node previous = null;
-        // Throw if is empty
-        int random_num = StdRandom.uniform(size);
-        if (random_num == 0) {
+        int randomNum = StdRandom.uniform(size);
+        if (randomNum == 0) {
             Item item = first.item;
             first = first.next;
             size--;
@@ -65,11 +76,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         } else {
             int count = 0;
             //Find the item to output
-            while (count < random_num) {
+            while (count < randomNum) {
                 previous = target;
                 target = target.next;
                 count++;
             }
+            assert previous != null;
             previous.next = target.next;
             Item output = target.item;
             size--;
@@ -79,6 +91,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // return a random item (but do not remove it)
     public Item sample() {
+
+        if (size == 0) {
+            throw new java.util.NoSuchElementException();
+        }
+
         Node copy = first;
         // Throw if is empty
         int random_num = StdRandom.uniform(size);
@@ -123,14 +140,14 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
 
         public void remove() {
-            throw new java.lang.UnsupportedOperationException();
+            throw new UnsupportedOperationException();
         }
     }
 
 
     // unit testing (required)
     public static void main(String[] args) {
-        RandomizedQueue<String> test = new RandomizedQueue<String>();
+        RandomizedQueue<String> test = new RandomizedQueue<>();
         test.enqueue("Apple");
         test.enqueue("apple");
         test.enqueue("APple");
@@ -146,7 +163,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         System.out.println(test.sample() + test.size + test.dequeue() + test.size);
 
         int n = 9;
-        RandomizedQueue<Integer> queue = new RandomizedQueue<Integer>();
+        RandomizedQueue<Integer> queue = new RandomizedQueue<>();
         for (int i = 0; i < n; i++)
             queue.enqueue(i);
         // while (!queue.isEmpty()) {
