@@ -36,7 +36,7 @@ public class Autocomplete {
         int lastIndex = BinarySearchDeluxe
                 .lastIndexOf(terms, test, Term.byPrefixOrder(prefix.length()));
         int length = lastIndex - firstIndex + 1; // Length of the subset
-        if (firstIndex > 0 && lastIndex > 0 && lastIndex > firstIndex && length != 0) {
+        if (firstIndex >= 0 && lastIndex > 0 && lastIndex > firstIndex && length != 0) {
             subset = new Term[length];
             int count = 0;
             for (int i = firstIndex; i <= lastIndex; i++) { //Subset the terms
@@ -62,7 +62,11 @@ public class Autocomplete {
                 .firstIndexOf(terms, test, Term.byPrefixOrder(prefix.length()));
         int lastIndex = BinarySearchDeluxe
                 .lastIndexOf(terms, test, Term.byPrefixOrder(prefix.length()));
-        return lastIndex - firstIndex;
+
+        if (lastIndex - firstIndex == 0) {
+            return 0;
+        }
+        return lastIndex - firstIndex + 1;
     }
 
     // unit testing (required)
